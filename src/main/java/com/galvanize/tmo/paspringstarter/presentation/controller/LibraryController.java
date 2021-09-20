@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -44,7 +43,7 @@ public class LibraryController {
     @PostMapping(value = "/api/books", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> addBooks(@RequestBody BookRequest bookRequest) {
         Book newBook = Book.builder()
-                .id(UUID.randomUUID().toString())
+                .id(LibraryService.generateBookID())
                 .author(bookRequest.getAuthor())
                 .title(bookRequest.getTitle())
                 .yearPublished(bookRequest.getYearPublished())

@@ -69,9 +69,9 @@ class PaSpringStarterApplicationTests {
 	@Test
 	void isGetAllSortedBooks() throws Exception {
 		books.addAll(Lists.newArrayList(
-				createBook("1", "Douglas Adams", "The Hitchhiker's Guide to the Galaxy", 1979),
-				createBook("2", "Philip K. Dick", "Philip K. Dick", 1968),
-				createBook("3", "William Gibson", "Neuromancer", 1984)
+				createBook(1, "Douglas Adams", "The Hitchhiker's Guide to the Galaxy", 1979),
+				createBook(2, "Philip K. Dick", "Philip K. Dick", 1968),
+				createBook(3, "William Gibson", "Neuromancer", 1984)
 		));
 		mockMvc.perform(get("/api/books"))
 				.andExpect(jsonPath("$.books").isNotEmpty())
@@ -81,9 +81,9 @@ class PaSpringStarterApplicationTests {
 	@Test
 	void isRemoveAllBooks() throws Exception {
 		books.addAll(Lists.newArrayList(
-				createBook("1", "Douglas Adams", "The Hitchhiker's Guide to the Galaxy", 1979),
-				createBook("2", "Philip K. Dick", "Philip K. Dick", 1968),
-				createBook("3", "William Gibson", "Neuromancer", 1984)
+				createBook(1, "Douglas Adams", "The Hitchhiker's Guide to the Galaxy", 1979),
+				createBook(2, "Philip K. Dick", "Philip K. Dick", 1968),
+				createBook(3, "William Gibson", "Neuromancer", 1984)
 		));
 		Assertions.assertEquals(3, books.size());
 		mockMvc.perform(delete("/api/books"))
@@ -91,7 +91,7 @@ class PaSpringStarterApplicationTests {
 		Assertions.assertEquals(0, books.size());
 	}
 
-	private Book createBook(String id, String author, String title, Integer yearPublished) {
+	private Book createBook(Integer id, String author, String title, Integer yearPublished) {
 		return Book.builder()
 				.id(id)
 				.author(author)
